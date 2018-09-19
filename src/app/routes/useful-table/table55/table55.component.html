@@ -1,0 +1,52 @@
+<div [hidden]="question.hidden">
+    <div [hidden]="question.hidden" nz-row [nzGutter]="24" class="py-lg">
+        <div nz-col [nzSpan]="24">
+            <nz-card [nzNoHovering]="true">
+                <ng-template #title>尿、粪常规</ng-template>
+                <ng-template #body>
+                    <nz-table [nzDataSource]="rowTitle" [nzIsPagination]="false">
+                        <thead nz-thead>
+                        <tr nz-tbody-tr>
+                            <th nz-th colspan="1">
+                            </th>
+                            <th style="padding-left: 4%" *ngFor="let title of columnTitle">
+                                <span >{{title}}</span>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody nz-tbody>
+                        <tr nz-tbody-tr *ngFor="let title of rowTitle, index as row">
+                            <td nz-td colspan="1">
+                                <a>{{title}}</a>
+                            </td>
+                            <td nz-td colspan="1">
+                                <nz-input [(ngModel)]="initialArray[row][0]"></nz-input>
+                            </td>
+                            <td nz-td colspan="1">
+                                <nz-input [(ngModel)]="initialArray[row][1]"></nz-input>
+                            </td>
+                            <td colspan="1" nz-td *ngFor="let item of selectableArray,index as column">
+                                <nz-radio-group [(ngModel)]="initialArray[row][column*(selectableCol - 1) + 2]">
+                                    <label nz-radio [nzValue]="'阴性'">
+                                        <span>1.阴性</span>
+                                    </label>
+                                    <label nz-radio [nzValue]="'阳性'">
+                                        <span>2.阳性</span>
+                                    </label>
+                                </nz-radio-group>
+                                <div nz-col="3">
+                                    <nz-input *ngIf="initialArray[row][column*(selectableCol - 1) + 2] ==='阳性'" [(ngModel)]="initialArray[row][column*(selectableCol - 1) + 3]"></nz-input>
+                                </div>
+
+                            </td>
+                        </tr>
+                        </tbody>
+                    </nz-table>
+                </ng-template>
+            </nz-card>
+        </div>
+    </div>
+</div>
+
+
+

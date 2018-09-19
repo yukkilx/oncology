@@ -1,0 +1,27 @@
+<div [hidden]="question.hidden">
+    <div nz-row >
+        <div nz-col>
+            <nz-card>
+                <ng-template #title>
+                    <label nz-form-item-required >{{question.id1}} {{question.title}}</label>
+                </ng-template>
+                <ng-template #body>
+                    <div *ngFor="let item of question.content, index as i">
+                        <div nz-form-label nz-col [nzSm]="2">
+                            <label >{{item}} </label>
+                        </div>
+                        <div nz-form-control nz-col [nzSm]="4">
+                            <nz-radio-group [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
+                                <ng-container *ngFor="let op of tf,index as j">
+                                    <label  nz-radio [nzValue]="j+1"  [nzDisabled]="editdisabled">
+                                        <span>{{op}}</span>
+                                    </label>
+                                </ng-container>
+                            </nz-radio-group>
+                        </div>
+                    </div>
+                </ng-template>
+            </nz-card>
+        </div>
+    </div>
+</div>

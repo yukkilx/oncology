@@ -1,0 +1,56 @@
+<div [hidden]="question.hidden" >
+    <!--<div nz-row>-->
+        <!--<div nz-col>-->
+            <nz-card >
+                <ng-template #title>
+                    <label>{{question.front_title}}</label>
+                </ng-template>
+                <ng-template #body>
+                    <form nz-form [formGroup]="validateForm" [nzLayout]="'inline'">
+                        <div nz-form-item>
+                            <div nz-form-control [nzValidateStatus]="'getFormControl(question.validtype)'" *ngIf="question.type == 'input'">
+                                <div [ngSwitch]="question.validtype">
+                                    <nz-input  *ngSwitchCase="'number'" [(ngModel)]="localAnswer" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" formControlName="number" ></nz-input>
+                                    <nz-input  *ngSwitchCase="'len_number'" [(ngModel)]="localAnswer" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" formControlName="len_number" ></nz-input>
+                                    <nz-input  *ngSwitchCase="'text'" [(ngModel)]="localAnswer" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" formControlName="text"></nz-input>
+                                    <nz-input  *ngSwitchCase="'len_text'" [(ngModel)]="localAnswer" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" formControlName="len_text"></nz-input>
+                                </div>
+                                <div *ngIf = "question.validtype === 'len_number'">
+                                    <div nz-form-explain *ngIf="getFormControl('len_number').dirty&&getFormControl('len_number').touched&&getFormControl('len_number').hasError('len_number')">
+                                        <span id="explain">体检编号必须为{{number_len}}位数字</span>
+                                    </div>
+                                </div>
+                                <div *ngIf = "question.validtype === 'number'">
+                                    <div nz-form-explain *ngIf="getFormControl('number').dirty&&getFormControl('number').touched&&getFormControl('number').hasError('number')">
+                                        <span id="explain">必须填写数值大小在{{min_value}}~{{max_value}}之间的数字</span>
+                                    </div>
+                                </div>
+                                <div *ngIf = "question.validtype === 'len_text'">
+                                    <div nz-form-explain *ngIf="getFormControl('len_text').dirty&&getFormControl('len_text').touched&&getFormControl('len_text').hasError('len_text')">
+                                        <span id="explain">输入不能超过{{text_len}}个字符</span>
+                                    </div>
+                                </div>
+                                <div *ngIf = "question.validtype === 'text'">
+                                    <div nz-form-explain *ngIf="getFormControl('text').dirty&&getFormControl('text').touched&&getFormControl('text').hasError('text')">
+                                        <span id="explain"></span>
+                                    </div>
+                                </div>
+
+                                <div *ngIf = "question.required === true">
+                                    <div nz-form-explain *ngIf="(getFormControl(question.validtype).dirty||getFormControl(question.validtype).touched)&&getFormControl(question.validtype).hasError('required')">
+                                        <span id="explain">必填项</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div nz-form-control >
+                                <label>{{question.behind_title}}</label>
+                            </div>
+                        </div>
+                    </form>
+                </ng-template>
+            </nz-card>
+        <!--</div>-->
+    <!--</div>-->
+
+</div>

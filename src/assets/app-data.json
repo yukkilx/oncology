@@ -1,0 +1,76 @@
+{
+    "app": {
+        "name": "西北乳腺癌数据库",
+        "description": "西北乳腺癌数据库"
+    },
+    "user": {
+        "name": "管理员",
+        "avatar": "./assets/img/zorro.svg",
+        "email": "drcubic@xjtu.edu.cn"
+    },
+    "menu": [
+        {
+            "group": true,
+            "children": [{
+                "text": "Health Survey",
+                "translate": "信息录入",
+                "link": "survey/detail",
+                "icon": "icon-grid"
+            }]
+        },
+        {
+            "group": true,
+            "children":[{
+                "text": "Patient information retrieval",
+                "translate": "患者信息检索",
+                "link": "retrieval/detail",
+                "icon": "fa fa-search"
+            }]
+        },
+        {
+            "group": true,
+            "children": [{
+                "text": "Statistics",
+                "translate": "信息统计",
+                "link": "statistics/charts/0",
+                "icon": "icon-chart",
+                "children": [
+                    {
+                        "text": "业务统计",
+                        "link": "statistics/charts/0",
+                        "i18n": "dashboard_v1"
+                    },
+                    {
+                        "text": "患者统计",
+                        "link": "statistics/charts/1",
+                        "i18n": "dashboard_v1"
+                    },
+                    {
+                        "text": "随访数据",
+                        "link": "statistics/charts/2",
+                        "i18n": "dashboard_v1"
+                    }
+                ]
+            }]
+        },
+        {
+            "group": true,
+            "children":[{
+                "text": "Research",
+                "translate": "科研系统",
+                "link": "#",
+                "icon": "fa fa-desktop"
+            }]
+        },
+        {
+            "group": true,
+            "children": [{
+                "text": "database setting",
+                "translate": "数据库配置",
+                "link": "dbsettings/detail",
+                "icon": "icon-settings"
+            }]
+        }
+    ]
+}
+

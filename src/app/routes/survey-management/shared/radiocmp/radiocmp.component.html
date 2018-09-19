@@ -1,0 +1,27 @@
+<div [hidden]="question.hidden">
+    <div nz-row >
+        <div nz-col>
+            <nz-card>
+                <ng-template #title >
+                    <label> {{question.front_title}}</label>
+                </ng-template>
+                <ng-template #body>
+                    <form nz-form [nzLayout]="'inline'">
+                        <div nz-form-control nz-col >
+                            <nz-radio-group style="display: flex;align-content: flex-start;flex-wrap: wrap"  [(ngModel)]="localAnswer" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}" >
+                                <ng-container *ngFor="let item of question.content,index as i">
+                                    <label  nz-radio [nzValue]="i"  [nzDisabled]="editdisabled">
+                                        <span>{{item}}</span>
+                                    </label>
+                                </ng-container>
+                            </nz-radio-group>
+                        </div>
+                        <div nz-form-control >
+                            <label>{{question.behind_title}}</label>
+                        </div>
+                    </form>
+                </ng-template>
+            </nz-card>
+        </div>
+    </div>
+</div>

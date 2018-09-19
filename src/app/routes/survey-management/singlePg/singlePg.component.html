@@ -1,0 +1,51 @@
+<div>
+    <br>
+    <div nz-row >
+        <div nz-col>
+            <nz-card>
+                <ng-template #title>患者电子健康病例<span id="red"></span></ng-template>
+                <ng-template #body>
+                    <nz-steps [(nzCurrent)]="current" [nzSize]="'small'" >
+                        <nz-step *ngFor="let step of b ,index as i" [nzTitle]="step.status" [nzDescription]="step.descript" (click)="jumpTo(i,footer)">
+                        </nz-step>
+                    </nz-steps>
+                    <br>
+                    <br>
+                    <div style="display: flex; flex-direction: row; flex-wrap: wrap; align-items: flex-start">
+                    <!--style="max-width: 1200px; float: left;"-->
+                    <div *ngFor="let question of qlist" style="flex-grow: 1">
+                        <div [ngSwitch]="question.type">
+                            <app-inputcmp       *ngSwitchCase="'input'"         [question]="question" (onVoted)="onVoted($event)" ></app-inputcmp>
+                            <app-radiocmp       *ngSwitchCase="'radio'"         [question]="question" (onVoted)="onVoted($event)" ></app-radiocmp>
+                            <app-checkboxcmp    *ngSwitchCase="'checkbox'"      [question]="question" (onVoted)="onVoted($event)" ></app-checkboxcmp>
+                            <app-addrcmp        *ngSwitchCase="'addr'"          [question]="question" (onVoted)="onVoted($event)" ></app-addrcmp>
+                            <app-idccmp         *ngSwitchCase="'idc'"           [question]="question" (onVoted)="onVoted($event)" ></app-idccmp>
+                            <app-high-table     *ngSwitchCase="'high-table'"    [question]="question" (onVoted)="onVoted($event)" ></app-high-table>
+                            <app-datecmp     *ngSwitchCase="'date'"    [question]="question" (onVoted)="onVoted($event)" ></app-datecmp>
+                            <app-option *ngSwitchCase="'option'" [question]="question" ></app-option>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="steps-action">
+                        <button *ngIf="!buttondisable && current > 0"  nz-button [nzType]="'default'" (click)="pre()">
+                            <span>上一步</span>
+                        </button>
+                        <button *ngIf="!buttondisable && current < (steps.length-1)"  nz-button [nzType]="'default'" (click)="next()">
+                            <span>下一步</span>
+                        </button>
+                        <button *ngIf="!buttondisable"  nz-button [nzType]="'default'" (click)="temporary_deposit()" >
+                            <span>暂存</span>
+                        </button>
+                        <button nz-button [nzType]="'default'" (click)="exit()">
+                            <span>退出</span>
+                        </button>
+                    </div>
+                </ng-template>
+            </nz-card>
+        </div>
+    </div>
+</div>
+
+
+
+

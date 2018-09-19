@@ -1,0 +1,78 @@
+<div [hidden]="question.hidden">
+    <div nz-row >
+        <div nz-col>
+            <nz-card>
+                <ng-template #title>
+                    <label>{{question.webId}} {{question.front_title}}</label>
+                    <!--<label nz-form-item-required >{{question.id1}} {{question.title}}</label>-->
+                </ng-template>
+                <ng-template #body>
+                    <div nz-row style="display: flex; align-content: space-between">
+                    <nz-select
+                        style="width: 250px;padding-right: 1%"
+                        nzAllowClear
+                        [nzPlaceHolder]="'省份'"
+                        [(ngModel)]="initArray[0]"
+                        (ngModelChange)="getCity()"
+                        nzShowSearch>
+                        <nz-option
+                            *ngFor="let option of provinces"
+                            [nzLabel]="option.label"
+                            [nzValue]="option.value"
+                            [nzDisabled]="option.disabled">
+                        </nz-option>
+                    </nz-select>
+                    <!--<span nz-form-text>省</span>-->
+                    <nz-select
+                        style="width: 250px;padding-right: 1%"
+                        nzAllowClear
+                        [nzPlaceHolder]="'市'"
+                        [(ngModel)]="initArray[1]"
+                        (ngModelChange)="getArea()"
+                        nzShowSearch>
+                        <nz-option
+                            *ngFor="let option of cities"
+                            [nzLabel]="option.label"
+                            [nzValue]="option.value"
+                            [nzDisabled]="option.disabled">
+                        </nz-option>
+                    </nz-select>
+                    <!--<span nz-form-text>市区</span>-->
+                    <nz-select
+                        style="width: 250px;padding-right: 1%"
+                        nzAllowClear
+                        [nzPlaceHolder]="'县'"
+                        [(ngModel)]="initArray[2]"
+                        (ngModelChange)="getStreet()"
+                        nzShowSearch>
+                        <nz-option
+                            *ngFor="let option of areas"
+                            [nzLabel]="option.label"
+                            [nzValue]="option.value"
+                            [nzDisabled]="option.disabled">
+                        </nz-option>
+                    </nz-select>
+                    <!--<span nz-form-text>街道</span>-->
+                    <nz-select
+                        style="width: 250px;padding-right: 1%"
+                        nzAllowClear
+                        [nzPlaceHolder]="'街道'"
+                        [(ngModel)]="initArray[3]"
+                        (ngModelChange)="answerChange()"
+                        nzShowSearch>
+                        <nz-option
+                            *ngFor="let option of streets"
+                            [nzLabel]="option.label"
+                            [nzValue]="option.value"
+                            [nzDisabled]="option.disabled">
+                        </nz-option>
+                    </nz-select>
+                        <nz-input style=" display: inline-block"   [(ngModel)]="initArray[4]" (ngModelChange)="answerChange()" [nzPlaceHolder]="'请输入详细地址'"></nz-input>
+                    </div>
+                    <!--<span nz-form-text>街道</span>-->
+
+                </ng-template>
+            </nz-card>
+        </div>
+    </div>
+</div>

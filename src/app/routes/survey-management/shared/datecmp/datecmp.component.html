@@ -1,0 +1,22 @@
+<div [hidden]="question.hidden">
+    <div nz-row >
+        <div nz-col>
+            <nz-card>
+                <ng-template #title>
+                    <label nz-form-item-required >{{question.front_title}}</label>
+                </ng-template>
+                <ng-template #body>
+                    <form nz-form [nzLayout]="'inline'">
+                        <div nz-form-item>
+                            <div nz-form-control>
+                                <div nz-form-control>
+                                    <nz-datepicker [(ngModel)]="date" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" [ngModelOptions]="{standalone: true}"></nz-datepicker>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </ng-template>
+            </nz-card>
+        </div>
+    </div>
+</div>

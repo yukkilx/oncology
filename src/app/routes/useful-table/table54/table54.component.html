@@ -1,0 +1,238 @@
+<div [hidden]="question.hidden">
+    <div [hidden]="question.hidden" nz-row [nzGutter]="24" class="py-lg">
+        <div nz-col [nzSpan]="24">
+            <nz-card [nzNoHovering]="true">
+                <ng-template #title>心脏超声</ng-template>
+                <ng-template #body>
+                    <div nz-row>
+                        <div nz-col [nzSpan]="6">
+                            <label>主动脉(mm)</label>
+                            <div style="width: 50%;">
+                                <nz-input [(ngModel)]="initialArray[0]"></nz-input>
+                            </div>
+                        </div>
+                        <div nz-col [nzSpan]="6">
+                            <label>升主(mm)</label>
+                            <div style="width: 50%;">
+                                <nz-input [(ngModel)]="initialArray[1]"></nz-input>
+                            </div>
+                        </div>
+                        <div nz-col [nzSpan]="6">
+                            <label>主动脉弓(mm)</label>
+                            <div style="width: 50%;">
+                                <nz-input [(ngModel)]="initialArray[2]"></nz-input>
+                            </div>
+                        </div>
+                        <div nz-col [nzSpan]="6">
+                            <label>降主(mm)</label>
+                            <div style="width: 50%;">
+                                <nz-input [(ngModel)]="initialArray[3]"></nz-input>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div nz-row>
+                        <div nz-col [nzSpan]="6">
+                            <label>腹主(mm)</label>
+                            <div style="width: 50%;">
+                                <nz-input [(ngModel)]="initialArray[4]"></nz-input>
+                            </div>
+                        </div>
+                        <div nz-col [nzSpan]="6">
+                            <label>肺动脉(mm)</label>
+                            <div style="width: 50%;">
+                                <nz-input [(ngModel)]="initialArray[5]"></nz-input>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    室间隔：
+                    <div nz-row>
+                        <div nz-col [nzSpan]="6">
+                            <label>厚度(mm)</label>
+                            <div style="width: 50%;">
+                                <nz-input [(ngModel)]="initialArray[6]"></nz-input>
+                            </div>
+                        </div>
+                        <div nz-col [nzSpan]="6">
+                            <label>搏幅(mm)</label>
+                            <div style="width: 50%;">
+                                <nz-input [(ngModel)]="initialArray[7]"></nz-input>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    左室后壁：
+                    <div nz-row>
+                        <div nz-col [nzSpan]="6">
+                            <label>厚度(mm)</label>
+                            <div style="width: 50%;">
+                                <nz-input [(ngModel)]="initialArray[8]"></nz-input>
+                            </div>
+                        </div>
+                        <div nz-col [nzSpan]="6">
+                            <label>搏幅(mm)</label>
+                            <div style="width: 50%;">
+                                <nz-input [(ngModel)]="initialArray[9]"></nz-input>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div nz-row>
+                        <div nz-col [nzSpan]="12">
+                            <label>左心房(前后、左右、S)：</label>
+                            <nz-input-group [nzSize]="'small'">
+                                <div nz-col [nzSpan]="4">
+                                    <input [(ngModel)]="initialArray[10]" nz-input>
+                                </div>
+                                <div nz-col [nzSpan]="4">
+                                    <input [(ngModel)]="initialArray[11]" nz-input>
+                                </div>
+                            </nz-input-group>
+                        </div>
+                        <div nz-col [nzSpan]="12">
+                            <label>右心房(左右、S)mm</label>
+                            <div style="width: 15%;">
+                                <nz-input [(ngModel)]="initialArray[12]"></nz-input>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div nz-row>
+                        <div nz-col [nzSpan]="12">
+                            <label>右心室(前后、左右D)：</label>
+                            <nz-input-group [nzSize]="'small'">
+                                <div nz-col [nzSpan]="4">
+                                    <input [(ngModel)]="initialArray[13]" nz-input>
+                                </div>
+                                <div nz-col [nzSpan]="4">
+                                    <input [(ngModel)]="initialArray[14]" nz-input>
+                                </div>Mm
+                            </nz-input-group>
+                        </div>
+                        <div nz-col [nzSpan]="12">
+                            <label>右室流出道(mm)</label>
+                            <div style="width: 15%;">
+                                <nz-input [(ngModel)]="initialArray[15]"></nz-input>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div nz-row>
+                        <div nz-col [nzSpan]="12">
+                            <label>左心室(前后、左右、S/D)：</label>
+                            <nz-input-group [nzSize]="'small'">
+                                <div nz-col [nzSpan]="4">
+                                    <input [(ngModel)]="initialArray[16]" nz-input>
+                                </div>
+                                <div nz-col [nzSpan]="4">
+                                    <input [(ngModel)]="initialArray[17]" nz-input>
+                                </div>
+                            </nz-input-group>
+                        </div>
+                        <div nz-col [nzSpan]="12">
+                            <label>(mm)</label>
+                            <nz-input-group [nzSize]="'small'">
+                                <div nz-col [nzSpan]="4">
+                                    <input [(ngModel)]="initialArray[18]" nz-input>
+                                </div>
+                                <div nz-col [nzSpan]="4">
+                                    <input [(ngModel)]="initialArray[19]" nz-input>
+                                </div>
+                            </nz-input-group>
+                        </div>
+                    </div>
+                    <br>
+                    <div nz-row>
+                        <div nz-col [nzSpan]="12">
+                            <label>左/右室壁运动减弱</label>
+                            <nz-radio-group [(ngModel)]="initialArray[20]">
+                                <label nz-radio [nzValue]="'有'">
+                                    <span>1.有</span>
+                                </label>
+                                <label nz-radio [nzValue]="'无'">
+                                    <span>2.无</span>
+                                </label>
+                            </nz-radio-group>
+                        </div>
+                        <div nz-col [nzSpan]="12">
+                            <label>室间隔运动减低</label>
+                            <nz-radio-group [(ngModel)]="initialArray[21]">
+                                <label nz-radio [nzValue]="'有'">
+                                    <span>1.有</span>
+                                </label>
+                                <label nz-radio [nzValue]="'无'">
+                                    <span>2.无</span>
+                                </label>
+                            </nz-radio-group>
+                        </div>
+                    </div>
+                    <br>
+                    <div nz-row>
+                        <div nz-col [nzSpan]="8">
+                            <label>肺动脉收缩压 三尖瓣反流法估测：</label>
+                            <nz-input-group [nzSize]="'small'">
+                                <div nz-col [nzSpan]="8">
+                                    <input [(ngModel)]="initialArray[22]" nz-input>
+                                </div>
+                                mmHg
+                            </nz-input-group>
+                        </div>
+                        <div nz-col [nzSpan]="8">
+                            <label>EF：</label>
+                            <nz-input-group [nzSize]="'small'">
+                                <div nz-col [nzSpan]="8">
+                                    <input [(ngModel)]="initialArray[23]" nz-input>
+                                </div>
+                                %
+                            </nz-input-group>
+                        </div>
+                        <div nz-col [nzSpan]="8">
+                            <label>FS：</label>
+                            <nz-input-group [nzSize]="'small'">
+                                <div nz-col [nzSpan]="8">
+                                    <input [(ngModel)]="initialArray[24]" nz-input>
+                                </div>
+                                %
+                            </nz-input-group>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div nz-row>
+                        <div nz-col [nzSpan]="8">
+                            <label>总体评价：</label>
+                            <nz-input-group [nzSize]="'small'">
+                                <div nz-col [nzSpan]="12">
+                                    <input [(ngModel)]="initialArray[25]" nz-input>
+                                </div>
+                                <div nz-col [nzSpan]="12">
+                                    <input [(ngModel)]="initialArray[26]" nz-input>
+                                </div>
+                            </nz-input-group>
+                        </div>
+                    </div>
+                    <br>
+                    <div nz-row>
+                        <div nz-col [nzSpan]="8">
+                            <label>彩色血流示：</label>
+                            <nz-input-group [nzSize]="'small'">
+                                <div nz-col [nzSpan]="12">
+                                    <input [(ngModel)]="initialArray[27]" nz-input>
+                                </div>
+                                <div nz-col [nzSpan]="12">
+                                    <input [(ngModel)]="initialArray[28]" nz-input>
+                                </div>
+                            </nz-input-group>
+                        </div>
+                    </div>
+                    <br>
+
+                </ng-template>
+            </nz-card>
+        </div>
+    </div>
+</div>
+
+
+

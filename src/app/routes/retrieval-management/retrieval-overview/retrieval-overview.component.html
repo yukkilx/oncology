@@ -1,0 +1,127 @@
+<div nz-row [nzGutter]="24" class="py-lg">
+    <div nz-col [nzSpan]="24">
+        <nz-card [nzNoHovering]="true">
+            <ng-template #title>患者检索</ng-template>
+            <ng-template #body>
+                <nz-card>
+                    <ng-template #body>
+                        <div>
+                            <nz-input-group *ngFor = "let i of conditions" style="margin-top: 5px;">
+                                <div [hidden]="i.add_remove" style="margin-bottom:8px;">
+                                    <nz-switch [(ngModel)]="i.andOrnot">
+                                        <span checked>and</span>
+                                        <span unchecked>not</span>
+                                    </nz-switch>
+                                </div>
+                                <nz-select style="width: 200px" [(ngModel)]="i.condition_type" (nzOpenChange) = "selectChange($event, i)">
+                                    <nz-option *ngFor="let c of condition_type" [nzLabel]="c" [nzValue]="c"></nz-option>
+                                </nz-select>
+                                <nz-select
+                                    style="width: 400px;"
+                                    nzKeepUnListOptions
+                                    [nzMode]="'multiple'"
+                                    [nzPlaceHolder]="'请选择关键字'"
+                                    (nzSearchChange)="searchChange($event, i)"
+                                    [(ngModel)]="i.selectedMultipleOption"
+                                    [nzNotFoundContent]="'无法找到'">
+                                    <nz-option
+                                        *ngFor="let option of i.searchOptions"
+                                        [nzLabel]="option[0]"
+                                        [nzValue]="option[0]">
+                                    </nz-option>
+                                </nz-select>
+                                <button nz-button [nzType]="'primary'" [nzShape]="'circle'" style="margin-left: 5px" (click) = "add_remove_click(i)">
+                                    <i class="{{i.ico}}"></i>
+                                </button>
+                            </nz-input-group>
+                        </div>
+                        <button nz-button [nzType]="'primary'" style="margin-top: 10px" (click)="retrieval()">
+                            <i class="anticon anticon-search"></i><span>Search</span>
+                        </button>
+                    </ng-template>
+                </nz-card>
+                <div nz-row [nzGutter]="16">
+                    <div nz-col [nzMd]="24">
+                        <nz-card>
+                            <ng-template #body>
+                                <nz-table #nzTable
+                                          [nzAjaxData]="data"
+                                          [nzShowSizeChanger]="true"
+                                          [nzLoading]="loading"
+                                          [nzTotal]="total"
+                                          [(nzPageIndex)]="pi"
+                                          (nzPageIndexChange)="getTableData(true)"
+                                          [(nzPageSize)]="ps"
+                                          (nzPageSizeChange)="getTableData(true)">
+                                    <thead nz-thead>
+                                    <tr>
+                                        <th nz-th [nzCheckbox]="true">
+                                            <label nz-checkbox
+                                                   [(ngModel)]="_allChecked" [nzIndeterminate]="_indeterminate"
+                                                   (ngModelChange)="_checkAll()">
+                                            </label>
+                                        </th>
+                                        <th nz-th><span>PID</span></th>
+                                        <th nz-th><span>病案号</span></th>
+                                        <!--<th nz-th><span>病案号</span><nz-table-sort [(nzValue)]="sortMap['No']" (nzValueChange)="sort('No',$event)"></nz-table-sort></th>-->
+                                        <th nz-th><span>操作</span></th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody nz-tbody>
+                                    <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+                                        <td nz-td [nzCheckbox]="true">
+                                            <label nz-checkbox [(ngModel)]="data.checked"
+                                                   (ngModelChange)="refChecked()">
+                                            </label>
+                                        </td>
+                                        <td nz-td>{{data.Pid}}</td>
+                                        <td nz-td>{{data.No}}</td>
+                                        <td nz-td>
+                                            <span >
+                                                <a [routerLink]="'../singlePg/'+ data">查看</a>
+                                                <span nz-table-divider></span>
+                                            </span>
+                                            <span >
+                                                <a (click)="deleteRecord(data)" >删除</a>
+                                                <span nz-table-divider></span>
+                                            </span>
+                                            <span>
+                                                <a (click)="downloadByPID(data)">导出</a>
+                                                <span nz-table-divider></span>
+                                            </span>
+                                            <span>
+                                                <a (click)="generateByPID(data)">病例生成</a>
+                                                <span nz-table-divider></span>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </nz-table>
+                            </ng-template>
+                        </nz-card>
+                    </div>
+                </div>
+
+
+                <div nz-row [nzGutter]="40">
+                    <div nz-col [nzSpan]="10"></div>
+                    <div nz-col [nzSpan]="3">
+                        <button nz-button [nzType]="'primary'" [nzSize]="'large'" [nzShape]="'circle'" class="mr-sm" (click)="downloadAll()">
+                            <i class="anticon anticon-download"></i>
+                        </button>
+                        导出所有记录
+                    </div>
+                    <div nz-col [nzSpan]="3">
+                        <button nz-button [nzType]="'primary'" [nzSize]="'large'" [nzShape]="'circle'" class="mr-sm" (click)="downSelected()">
+                            <i class="anticon anticon-download"></i>
+                        </button>
+                        导出选中记录
+                    </div>
+                </div>
+            </ng-template>
+        </nz-card>
+    </div>
+</div>
+
+

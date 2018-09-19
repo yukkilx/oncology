@@ -1,0 +1,27 @@
+
+<div nz-row [nzGutter]="24" class="py-lg">
+    <div nz-col [nzSpan]="24">
+        <nz-card [nzNoHovering]="true">
+            <ng-template #title>数据库配置</ng-template>
+            <ng-template #body>
+                <nz-card>
+                    <ng-template #body>
+                        <form nz-form>
+                            <div nz-row nz-form-item [nzGutter]="16" class="mb0">
+                                <div nz-form-label nz-col [nzSm]="3">
+                                    <label>项目名称（英文）</label>
+                                </div>
+                                <div nz-form-control nz-col [nzSm]="3">
+                                    <nz-input [(ngModel)]="pname" name="userId" [nzId]="'userId'" ></nz-input>
+                                </div>
+                                <div nz-col [nzSm]="4" >
+                                    <button nz-button [nzType]="'primary'" (click)="initdb()" [nzLoading]="loading">数据库初始化</button>
+                                </div>
+                            </div>
+                        </form>
+                    </ng-template>
+                </nz-card>
+            </ng-template>
+        </nz-card>
+    </div>
+</div>

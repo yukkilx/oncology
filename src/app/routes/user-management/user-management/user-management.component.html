@@ -1,0 +1,94 @@
+<div class="content__title">
+    <h1>
+        人员介绍
+    </h1>
+</div>
+<div nz-row [nzGutter]="32">
+    <div nz-col [nzXs]="24" [nzSm]="8">
+        <nz-card>
+            <ng-template #body>
+                <div class="text-right text-grey">
+                    <img alt class="img-fluid align-middle" src="./assets/img/polo.jpg">
+                </div>
+                <h3 class="h3">赫尔克里 波洛</h3>
+                <p class="text-grey">著名侦探</p>
+                <a class="pull-right" (click)="customCompModel('', charactors[0], 'polo.jpg')">查看详情</a>
+            </ng-template>
+        </nz-card>
+    </div>
+    <div nz-col [nzXs]="24" [nzSm]="8">
+        <nz-card>
+            <ng-template #body>
+                <div class="text-right text-grey">
+                    <img alt class="img-fluid align-middle" src="./assets/img/lady.jpg">
+                </div>
+                <h3 class="h3">哈伯德夫人</h3>
+                <p class="text-grey">舞蹈家</p>
+                <a class="pull-right" (click)="customCompModel('', charactors[1], 'lady.jpg')">查看详情</a>
+            </ng-template>
+        </nz-card>
+    </div>
+    <div nz-col [nzXs]="24" [nzSm]="8">
+        <nz-card>
+            <ng-template #body>
+                <div class="text-right text-grey">
+                    <img alt class="img-fluid align-middle" src="./assets/img/book.jpg">
+                </div>
+                <h3 class="h3">布克</h3>
+                <p class="text-grey">列车长</p>
+                <a class="pull-right" (click)="customCompModel('', charactors[2], 'book.jpg')">查看详情</a>
+            </ng-template>
+        </nz-card>
+    </div>
+</div>
+
+<div nz-row [nzGutter]="24">
+    <div nz-col [nzXs]="24" [nzSm]="6">
+        <nz-card>
+            <ng-template #body>
+                <div class="text-right text-grey">
+                    <img alt class="img-fluid align-middle" src="./assets/img/waiter.jpg">
+                </div>
+                <h3 class="h3">米歇尔</h3>
+                <p class="text-grey">乘务员</p>
+                <a class="pull-right">查看详情</a>
+            </ng-template>
+        </nz-card>
+    </div>
+    <div nz-col [nzXs]="24" [nzSm]="6">
+        <nz-card>
+            <ng-template #body>
+                <div class="text-right text-grey">
+                    <img alt class="img-fluid align-middle" src="./assets/img/professor.jpg">
+                </div>
+                <h3 class="h3">哈德曼先生</h3>
+                <p class="text-grey">奥地利物理学家</p>
+                <a class="pull-right">查看详情</a>
+            </ng-template>
+        </nz-card>
+    </div>
+    <div nz-col [nzXs]="24" [nzSm]="6">
+        <nz-card>
+            <ng-template #body>
+                <div class="text-right text-grey">
+                    <img alt class="img-fluid align-middle" src="./assets/img/driver.jpg">
+                </div>
+                <h3 class="h3">马奎斯</h3>
+                <p class="text-grey">汽车商</p>
+                <a class="pull-right">查看详情</a>
+            </ng-template>
+        </nz-card>
+    </div>
+    <div nz-col [nzXs]="24" [nzSm]="6">
+        <nz-card>
+            <ng-template #body>
+                <div class="text-right text-grey">
+                    <img alt class="img-fluid align-middle" src="./assets/img/marie.jpg">
+                </div>
+                <h3 class="h3">玛丽</h3>
+                <p class="text-grey">教师</p>
+                <a class="pull-right">查看详情</a>
+            </ng-template>
+        </nz-card>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+<br>
+<div nz-row>
+    <div nz-col>
+        <nz-card>
+            <ng-template #title>文件同步分享表</ng-template>
+            <ng-template #body>
+
+                <div nz-row [nzGutter]="16">
+                    <div nz-col [nzMd]="24">
+                        <nz-card>
+                            <ng-template #title>已有文件列表</ng-template>
+                            <ng-template #body>
+                                <div class="mb-sm text-right">
+
+                                    <button nz-button [routerLink]="['../file_upload']" *ngIf="userGroup < '3'">
+                                        <span>上传文件</span> <i class="anticon anticon-plus"></i>
+                                    </button>
+                                </div>
+                                <nz-table #nzTable [nzDataSource]="data"
+                                          [nzPageSize]="10"
+                                          [nzShowSizeChanger]="true">
+                                    <thead nz-thead>
+                                    <tr>
+                                        <th nz-th><span>文件名</span>
+                                            <nz-dropdown [nzTrigger]="'click'" [nzClickHide]="false">
+                                                <i class="anticon anticon-search ant-table-filter-icon" nz-dropdown></i>
+                                                <div nz-dropdown-custom class="custom-filter-dropdown">
+                                                    <nz-input [nzPlaceHolder]="'搜索文件名'" [(ngModel)]="searchValue"></nz-input>
+                                                    <button nz-button [nzType]="'primary'" (click)="search()">查询</button>
+                                                    <button nz-button [nzType]="'default'" (click)="getTableData()">重置</button>
+                                                </div>
+                                            </nz-dropdown>
+                                        </th>
+                                        <th nz-th><span>大小</span></th>
+                                        <th nz-th><span>上传时间</span></th>
+                                        <th nz-th><span>上传者</span></th>
+                                        <th nz-th><span>操作</span></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody nz-tbody>
+                                    <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+                                        <td nz-td>{{data.Name}}</td>
+                                        <td nz-td>{{data.Size}}</td>
+                                        <td nz-td>{{data.Updated_time.substring(0, 19)}}</td>
+                                        <td nz-td>{{data.Created_user}}</td>
+                                        <td nz-td>
+                                            <!--前段根据四种权限，对应有不同的操作组合。-->
+                                            <!--下载文件，调用下载api-->
+                                            <span>
+                                                <a (click)="downloadFile(data.id, data.Name)">下载</a>
+                                                <span nz-table-divider></span>
+                                            </span>
+                                            <nz-popconfirm *ngIf="userGroup < '3'" [nzTitle]="'确定删除文件？'" [nzOkText]="'确定'" [nzCancelText]="'取消'" (nzOnConfirm)="deleteFile(data.id)">
+                                                <a nz-popconfirm>删除</a>
+                                            </nz-popconfirm>
+                                            <!--删除文件，调用删除api-->
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </nz-table>
+                            </ng-template>
+                        </nz-card>
+                    </div>
+                </div>
+            </ng-template>
+        </nz-card>
+    </div>
+</div>

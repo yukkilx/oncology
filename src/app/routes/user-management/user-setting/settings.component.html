@@ -1,0 +1,160 @@
+<div nz-row [nzGutter]="24" class="py-lg">
+    <div nz-col [nzSpan]="24">
+        <nz-card [nzNoHovering]="true" *ngIf="active===1">
+            <ng-template #title>用户管理</ng-template>
+            <ng-template #body>
+                <nz-card>
+                    <ng-template #body>
+                        <form nz-form>
+                            <div nz-row nz-form-item [nzGutter]="16">
+                                <div nz-form-label nz-col [nzSm]="2">
+                                    <label>姓名</label>
+                                </div>
+                                <div nz-form-control nz-col [nzSm]="5">
+                                    <nz-input [(ngModel)]="conditions.filter.first_name" name="name" [nzId]="'name'"></nz-input>
+                                </div>
+                                <div nz-form-label nz-col [nzSm]="2">
+                                    <label>用户ID</label>
+                                </div>
+                                <div nz-form-control nz-col [nzSm]="5">
+                                    <nz-input [(ngModel)]="conditions.filter.username" name="userId" [nzId]="'userId'"></nz-input>
+                                </div>
+
+                                <div nz-form-label nz-col [nzSm]="2">
+                                    <label>用户权限</label>
+                                </div>
+                                <div nz-form-control nz-col [nzSm]="5">
+                                    <nz-dropdown>
+                                        <a class="ant-dropdown-link" nz-dropdown>
+                                            {{conditions.filter.group ? authority[conditions.filter.group] : '不限'}} <i class="anticon anticon-down"></i>
+                                        </a>
+                                        <ul nz-menu>
+                                            <li nz-menu-item (click)="conditions.filter.group=''">不限</li>
+                                            <li nz-menu-item (click)="conditions.filter.group='4'">普通用户</li>
+                                            <li nz-menu-item (click)="conditions.filter.group='3'">高级用户</li>
+                                        </ul>
+                                    </nz-dropdown>
+                                    <span class="text-grey-light">(点击选择)</span>
+                                </div>
+                            </div>
+                            <div nz-row nz-form-item [nzGutter]="16" class="mb0">
+                                <div nz-form-label nz-col [nzSm]="2">
+                                    <label>所属省份</label>
+                                </div>
+                                <div nz-form-control nz-col [nzSm]="5">
+                                    <nz-dropdown>
+                                        <a class="ant-dropdown-link" nz-dropdown>
+                                            {{conditions.filter.province ? conditions.filter.province : '不限'}} <i class="anticon anticon-down"></i>
+                                        </a>
+                                        <ul nz-menu>
+                                            <li nz-menu-item (click)="conditions.filter.province=''">不限</li>
+                                            <li nz-menu-item (click)="conditions.filter.province='陕西'">陕西</li>
+                                            <li nz-menu-item (click)="conditions.filter.province='甘肃'">甘肃</li>
+                                            <li nz-menu-item (click)="conditions.filter.province='青海'">青海</li>
+                                            <li nz-menu-item (click)="conditions.filter.province='宁夏'">宁夏</li>
+                                            <li nz-menu-item (click)="conditions.filter.province='新疆'">新疆</li>
+                                        </ul>
+                                    </nz-dropdown>
+                                    <span class="text-grey-light">(点击选择)</span>
+                                </div>
+                                <div nz-form-label nz-col [nzSm]="2">
+                                    <label>注册日期</label>
+                                </div>
+                                <div nz-form-control nz-col [nzSm]="5">
+                                    <div nz-row>
+                                        <div nz-form-control nz-col [nzSpan]="11">
+                                            <nz-datepicker [(ngModel)]="start_time" name="created_begin" [nzPlaceHolder]="'开始日期'"></nz-datepicker>
+                                        </div>
+                                        <div nz-col [nzSpan]="2">
+                                            <p nz-form-split>-</p>
+                                        </div>
+                                        <div nz-form-control nz-col [nzSpan]="11">
+                                            <nz-datepicker [(ngModel)]="end_time" name="created_end" [nzPlaceHolder]="'截止日期'"></nz-datepicker>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div nz-col [nzSm]="4" [nzOffset]="6">
+                                    <button nz-button [nzType]="'primary'" (click)="showConditions()" [nzLoading]="loading">查询</button>
+                                    <button nz-button (click)="clear()" [disabled]="loading">清空</button>
+                                </div>
+                            </div>
+                        </form>
+                    </ng-template>
+                </nz-card>
+                <div nz-row [nzGutter]="16">
+                <div nz-col [nzMd]="24">
+                    <nz-card>
+                        <ng-template #body>
+                            <div class="mb-sm text-right">
+
+                                    <button nz-button (click)="registerCompModel()" >
+                                        <span>添加用户</span> <i class="anticon anticon-plus"></i>
+                                    </button>
+                            </div>
+                            <nz-table #nzTable
+                                      [nzAjaxData]="list"
+                                      [nzShowSizeChanger]="true"
+                                      [nzLoading]="loading"
+                                      [nzTotal]="total"
+                                      [(nzPageIndex)]="pi"
+                                      (nzPageIndexChange)="load(true)"
+                                      [(nzPageSize)]="ps"
+                                      (nzPageSizeChange)="load(true)">
+                                <thead nz-thead>
+                                <tr>
+                                    <th nz-th [nzCheckbox]="true">
+                                        <label nz-checkbox
+                                               [(ngModel)]="_allChecked" [nzIndeterminate]="_indeterminate"
+                                               (ngModelChange)="_checkAll()">
+                                        </label>
+                                    </th>
+                                    <!--<th nz-th><span></span></th>-->
+                                    <th nz-th><span>姓名</span><nz-table-sort [(nzValue)]="sortMap['username']" (nzValueChange)="sort('username',$event)"></nz-table-sort></th>
+                                    <!--<th nz-th><span>年龄</span></th>-->
+                                    <th nz-th><span>邮箱</span></th>
+                                    <th nz-th><span>省份</span></th>
+                                    <th nz-th><span>权限</span><nz-table-sort [(nzValue)]="sortMap['group']" (nzValueChange)="sort('group',$event)"></nz-table-sort></th>
+                                    <th nz-th><span>注册日期</span><nz-table-sort [(nzValue)]="sortMap['date_joined']" (nzValueChange)="sort('date_joined',$event)"></nz-table-sort></th>
+                                    <th nz-th *ngIf="nowuser.user_group < '3'"><span>操作</span></th>
+                                </tr>
+                                </thead>
+                                <tbody nz-tbody>
+                                <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+                                    <td nz-td [nzCheckbox]="true">
+                                        <label nz-checkbox [(ngModel)]="data.checked"
+                                               (ngModelChange)="refChecked()">
+                                        </label>
+                                    </td>
+                                   <!-- <td nz-td>
+                                        <nz-avatar [nzSrc]="data.picture.thumbnail" [nzSize]="'large'"></nz-avatar>
+                                    </td>-->
+                                    <td nz-td>{{data.first_name}} {{data.last_name}}</td>
+                                    <td nz-td>{{data.email}}</td>
+                                    <td nz-td>
+                                        {{data.province}}
+                                        <!--<div sparkline data-bar-color="#cfdbe2"
+                                             data-height="20" data-bar-width="2" data-bar-spacing="2"
+                                             values="1,0,4,6,5,7,8,3,5,7,8"></div>-->
+                                    </td>
+                                    <td nz-td>{{data.group}}</td>
+                                    <td nz-td>{{data.date_joined}}</td>
+                                    <td nz-td >
+                                        <a *ngIf="nowuser.user_group < '3' && nowuser.user_group < authorityToNum[data.group]" (click)="showMsg('Edit');customCompModel('', data, data.group)">管理</a>
+                                        <span nz-table-divider *ngIf="nowuser.user_group < '3' && nowuser.user_group < authorityToNum[data.group]"></span>
+                                        <em *ngIf="nowuser.user_name === data.username">当前用户</em>
+                                        <nz-popconfirm *ngIf="nowuser.user_group < '3' && nowuser.user_group < authorityToNum[data.group]" [nzTitle]="'确定删除用户？'" [nzOkText]="'确定'" [nzCancelText]="'取消'" (nzOnConfirm)="showMsg('删除成功');deleteUser(data.username)">
+                                            <a nz-popconfirm>删除</a>
+                                        </nz-popconfirm>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </nz-table>
+                        </ng-template>
+                    </nz-card>
+                </div>
+                </div>
+            </ng-template>
+        </nz-card>
+
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div [hidden]="question.hidden" >
+
+    <nz-card >
+        <ng-template #title>
+            <label>{{question.front_title}}</label>
+        </ng-template>
+        <ng-template #body>
+            <form nz-form [nzLayout]="'inline'">
+                <div nz-form-item>
+                    <div nz-form-control nz-col [nzSm]="20">
+                        <nz-input-group [nzSize]="'large'" nzCompact style="min-width: 20px">
+                            <nz-select  [(ngModel)]="localAnswer" style="min-width: 150px" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"  >
+                                <!--<nz-option [nzLabel]="'Option1-1'" [nzValue]="'Option1-1'"></nz-option>-->
+                                <nz-option *ngFor="let c of options" [nzLabel]="c" [nzValue]="c"></nz-option>
+                                <!--<nz-option [nzLabel]="'Option1-2'" [nzValue]="'Option1-2'"></nz-option>-->
+                            </nz-select>
+                        </nz-input-group>
+                    </div>
+                    <div nz-form-control >
+                        <label>{{question.behind_title}}</label>
+                    </div>
+                </div>
+            </form>
+        </ng-template>
+    </nz-card>
+</div>
+

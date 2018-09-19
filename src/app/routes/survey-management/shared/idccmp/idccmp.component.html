@@ -1,0 +1,36 @@
+<div [hidden]="question.hidden">
+    <div nz-row >
+        <div nz-col>
+            <nz-card>
+                <ng-template #title>
+                    <!--<label nz-form-item-required >{{question.id1}} {{question.title}}</label>-->
+                    <label> {{question.front_title}}</label>
+                </ng-template>
+                <ng-template #body>
+                    <form nz-form [formGroup]="validateForm" [nzLayout]="'inline'">
+                        <div nz-form-item>
+                            <div nz-form-control [nzValidateStatus]="getFormControl('idc')">
+                                <div style="float: left">
+                                    <nz-input   [(ngModel)]="localAnswer"  [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [nzType]="pwdOrtext" formControlName="idc" ></nz-input>
+                                </div>
+                                <div style="float: left" (click)="Onclick()">
+                                    <i class="anticon anticon-eye" ></i>
+                                </div>
+                                <br>
+                                <div nz-form-explain *ngIf="getFormControl('idc').dirty&&getFormControl('idc').touched&&getFormControl('idc').hasError('idc')">
+                                    身份证格式不合法
+                                </div>
+                                <div *ngIf = "question.required === true">
+                                    <div nz-form-explain *ngIf="(getFormControl('idc').dirty||getFormControl('idc').touched)&&getFormControl('idc').hasError('required')">
+                                        <span id="explan">必填项</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </ng-template>
+            </nz-card>
+        </div>
+    </div>
+
+</div>

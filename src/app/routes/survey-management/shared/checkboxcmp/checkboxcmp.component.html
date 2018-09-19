@@ -1,0 +1,22 @@
+<div [hidden]="question.hidden">
+    <div nz-row [hidden]="question.hidden">
+        <div nz-col>
+            <nz-card>
+                <ng-template #title>
+                    <label nz-form-item-required >{{question.front_title}}</label>
+                </ng-template>
+                <ng-template #body>
+                    <form nz-form [nzLayout]="'inline'">
+                        <div nz-form-control nz-col  style="display: flex; align-content: flex-start">
+                            <ng-container style="flex-shrink: 1"  *ngFor="let item of question.content,index as i">
+                                <label nz-checkbox [(ngModel)]="localAnswer[i]" [nzDisabled]="editdisabled"(ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}">
+                                    <span>{{item}}</span>
+                                </label>
+                            </ng-container>
+                        </div>
+                    </form>
+                </ng-template>
+            </nz-card>
+        </div>
+    </div>
+</div>

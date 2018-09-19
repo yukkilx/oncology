@@ -1,0 +1,49 @@
+<div [hidden]="question.hidden">
+    <div  nz-row [nzGutter]="24" class="py-lg">
+        <div nz-col [nzSpan]="24">
+            <nz-card [nzNoHovering]="true">
+                <ng-template #title>下肢静脉超声</ng-template>
+                <ng-template #body>
+                    <nz-table [nzDataSource]="rowTitle" [nzIsPagination]="false">
+                        <thead nz-thead>
+                        <tr nz-tbody-tr>
+                            <th nz-th colspan="2">
+                            </th>
+                            <th nz-th colspan="2"  *ngFor="let title of columnTitle">
+                                <span>{{title}}</span>
+                            </th>
+                        </tr>
+                        <tr nz-tbody-tr>
+                            <th nz-th colspan="2">
+                            </th>
+                            <th nz-th colspan="1"  *ngFor="let title of secondLevelTitle">
+                                <span>{{title}}</span>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody nz-tbody>
+                        <tr nz-tbody-tr *ngFor="let title of rowTitle, index as row">
+                            <td nz-td colspan="2">
+                                <a>{{title}}</a>
+                            </td>
+                            <td colspan="1" nz-td *ngFor="let item of letterArray,index as column">
+                                <nz-input [(ngModel)]="initialArray[row][column]"></nz-input>
+                            </td>
+                        </tr>
+                        <tr nz-tbody-tr *ngIf="overallId.length > 0">
+                            <td nz-td colspan="2">
+                                <a>总体评价</a>
+                            </td>
+                            <td nz-td colspan="4" *ngFor="let item of overallId,index as column">
+                                <nz-input [(ngModel)]="overallContent[column]"></nz-input>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </nz-table>
+                </ng-template>
+            </nz-card>
+        </div>
+    </div>
+
+</div>
+

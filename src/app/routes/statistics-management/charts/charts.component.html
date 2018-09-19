@@ -1,0 +1,61 @@
+<div nz-row [nzGutter]="24" class="py-lg">
+    <div nz-col [nzSpan]="24">
+        <nz-card [nzNoHovering]="true">
+            <ng-template #title >{{titles}}</ng-template>
+            <ng-template #body>
+                <div nz-row>
+                    <div nz-col [nzSpan] = "20" [nzPush] = "4">
+
+                        <div *ngFor="let option of option_list">
+                            <div [ngSwitch] = "option.type">
+                                <div id="{{option.name}}">
+                                    <app-bar *ngSwitchCase = "'bar'" [options] = "option"></app-bar>
+                                    <app-map *ngSwitchCase = "'map'" [options] = "option"></app-map>
+                                    <app-pie *ngSwitchCase = "'pie'" [options] = "option"></app-pie>
+                                    <app-stackbar *ngSwitchCase = "'stackbar'" [options] = "option"></app-stackbar>
+                                    <app-normalpie *ngSwitchCase = "'normalpie'" [options] = "option"></app-normalpie>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div>
+                            <app-singledot></app-singledot>
+                        </div>
+                        <div>
+                            <app-treemap></app-treemap>
+                        </div>
+
+                    </div>
+
+                    <div nz-col [nzSpan]="4" [nzPull]="20">
+                        <nz-affix>
+                            <nz-card style="width: 80%">
+                                <ng-template #title>
+                                    <span>统计科室: 所有权限科室</span>
+                                </ng-template>
+                                <ng-template #body>
+                                    <nz-anchor>
+                                        <div *ngFor="let option of option_list">
+                                            <nz-link nzHref="#{{option.name}}" nzTitle="{{option.name}}"></nz-link>
+                                        </div>
+                                        <!--<div>-->
+                                            <!--<nz-link nzHref="#门s诊人次" nzTitle="门诊人s次"></nz-link>-->
+                                        <!--</div>-->
+
+                                        <!--<nz-link nzHref="#门诊人次" nzTitle="出院人次"></nz-link>-->
+                                        <!--<nz-link nzHref="#门诊人次" nzTitle="平均住院日"></nz-link>-->
+                                        <!--<nz-link nzHref="#门诊人次" nzTitle="出院者住院天数大于30"></nz-link>-->
+                                        <!--<nz-link nzHref="#门诊人次" nzTitle="出院者死亡率"></nz-link>-->
+                                        <!--<nz-link nzHref="#门诊人次" nzTitle="全院病床使用率"></nz-link>-->
+                                    </nz-anchor>
+                                </ng-template>
+
+                            </nz-card>
+
+                        </nz-affix>
+                    </div>
+                </div>
+            </ng-template>
+        </nz-card>
+    </div>
+</div>

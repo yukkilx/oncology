@@ -1,0 +1,34 @@
+<div [hidden]="question.hidden">
+    <div nz-row [nzGutter]="24" class="py-lg">
+        <div nz-col [nzSpan]="24">
+            <nz-card [nzNoHovering]="true">
+                <ng-template #title>{{question.id1}}{{question.title}}</ng-template>
+                <ng-template #body>
+                    <nz-table [nzDataSource]="rowTitle" [nzIsPagination]="false">
+                        <thead nz-thead>
+                        <tr nz-tbody-tr>
+                            <th nz-th colspan="2">
+                            </th>
+                            <th style="padding-left: 4%" *ngFor="let title of columnTitle">
+                                <span >{{title}}</span>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody nz-tbody>
+                        <tr nz-tbody-tr *ngFor="let title of rowTitle, index as row">
+                            <td nz-td colspan="2">
+                                <a>{{title}}</a>
+                            </td>
+                            <td colspan="1" nz-td *ngFor="let item of columnTitle,index as column">
+                                <nz-input [(ngModel)]="initialArray[row][column]"></nz-input>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </nz-table>
+                </ng-template>
+            </nz-card>
+        </div>
+    </div>
+</div>
+
+

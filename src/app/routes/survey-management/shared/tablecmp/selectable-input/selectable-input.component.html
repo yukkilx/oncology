@@ -1,0 +1,26 @@
+<div [hidden]="question.hidden">
+    <div nz-row >
+        <div nz-col>
+            <nz-card>
+                <ng-template #title>
+                    <label nz-form-item-required >{{question.id1}} {{question.title}}</label>
+                </ng-template>
+                <ng-template #body>
+                    <form nz-form [nzLayout]="'inline'">
+                    <!--<nz-input-group *ngFor="let item of question.content,index as i">-->
+                    <div *ngFor="let item of question.content,index as i">
+                        <!--<div nz-row>-->
+                        <div nz-form-label nz-col [nzSm]="2">
+                            <label>{{item}}</label>
+                        </div>
+                        <div nz-form-control nz-col [nzSm]="4">
+                        <nz-input [(ngModel)]="localAnswer[i]" (ngModelChange)="answerChange()" [nzDisabled]="editdisabled" [ngModelOptions]="{standalone: true}"></nz-input>
+                        </div>
+                        </div>
+                    <!--</nz-input-group>-->
+                    </form>
+                </ng-template>
+            </nz-card>
+        </div>
+    </div>
+</div>

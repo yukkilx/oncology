@@ -1,0 +1,14 @@
+<div id="title" style="margin-top: 30px">
+    <div>
+        <div echarts [options]="option" class="demo-chart" (chartInit)="onChartEvent($event, 'chartInit')"
+             (chartClick)="onChartEvent($event, 'chartClick')"
+             (chartDblClick)="onChartEvent($event, 'chartDblClick')"
+             (chartMouseDown)="onChartEvent($event, 'chartMouseDown')"
+             (chartMouseUp)="onChartEvent($event, 'chartMouseUp')"
+             (chartMouseOver)="onChartEvent($event, 'chartMouseOver')"
+             (chartMouseOut)="onChartEvent($event, 'chartMouseOut')"
+             (chartGlobalOut)="onChartEvent($event, 'chartGlobalOut')"
+             (chartContextMenu)="onChartEvent($event, 'chartContextMenu')"
+             (chartDataZoom)="onChartEvent($event, 'chartDataZoom')"></div>
+    </div>
+</div>

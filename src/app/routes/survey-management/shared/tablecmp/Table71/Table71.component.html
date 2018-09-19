@@ -1,0 +1,75 @@
+<div [hidden]="question.hidden">
+    <div nz-row >
+        <div nz-col>
+            <nz-card>
+                <ng-template #title>
+                    <label>{{question.id1}}{{question.title}}</label>
+                </ng-template>
+                <ng-template #body>
+                    <form nz-form [nzLayout]="'inline'" >
+                        <div nz-form-control nz-col [nzSm]="20">
+                            <nz-table [nzDataSource]="question.rawname" [nzIsPagination]="false">
+                                <thead nz-thead>
+                                <tr>
+                                    <th nz-th><span>项目</span></th>
+                                    <th nz-th><span>自我感觉</span></th>
+                                    <th nz-th><span>下肢肿胀</span></th>
+                                    <th nz-th><span>(1)Homans征
+                                        (2) 腓肠肌挤压痛</span></th>
+                                    <th nz-th><span>胸痛、咳嗽、咯血</span></th>
+                                    <th nz-th><span>运动耐量</span></th>
+                                    <th nz-th><span>血压</span></th>
+                                </tr>
+                                </thead>
+                                <tbody nz-tbody>
+                                <tr nz-tbody-tr *ngFor="let Name of question.rawname,index as i">
+                                    <td nz-td>{{Name}}</td>
+                                    <td nz-td>
+                                    <span>
+                                    <nz-input  [(ngModel)]="localAnswer[i][0]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input>
+                                    </span>
+                                    </td>
+                                    <td nz-td>
+                                    <span>
+                                    <nz-input  [(ngModel)]="localAnswer[i][1]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input>
+                                    </span>
+                                    </td>
+                                    <td nz-td>
+                                    <span>
+                                    <nz-input-number [(ngModel)]="localAnswer[i][2]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
+                                    </span>
+                                    </td>
+                                    <td nz-td>
+                                    <span>
+                                    <nz-input  [(ngModel)]="localAnswer[i][3]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input>
+                                    </span>
+                                    </td>
+                                    <td nz-td>
+                                    <span>
+                                    <nz-input  [(ngModel)]="localAnswer[i][4]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input>
+                                    </span>
+                                    </td>
+                                    <td nz-td>
+                                    <span>
+                                        <nz-input-number [nzMin]="0" [nzMax]="300" [(ngModel)]="localAnswer[i][5]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
+                                        /
+                                        <nz-input-number [nzMin]="0" [nzMax]="300" [(ngModel)]="localAnswer[i][6]" [nzDisabled]="editdisabled" (ngModelChange)="answerChange()" [ngModelOptions]="{standalone: true}"></nz-input-number>
+                                    </span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </nz-table>
+                            <br>
+                            <nz-tooltip [nzTitle]="'提示'">
+                                <span nz-tooltip>{{question.bottomTitle}}</span>
+                            </nz-tooltip>
+                        </div>
+                    </form>
+
+                </ng-template>
+
+            </nz-card>
+        </div>
+    </div>
+
+</div>
